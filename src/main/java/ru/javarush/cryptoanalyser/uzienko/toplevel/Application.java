@@ -1,7 +1,7 @@
-package ru.javarush.cryptoanaliser.uzienko.app;
+package ru.javarush.cryptoanalyser.uzienko.toplevel;
 
-import ru.javarush.cryptoanaliser.uzienko.Result;
-import ru.javarush.cryptoanaliser.uzienko.controllers.MainController;
+import ru.javarush.cryptoanalyser.uzienko.entity.Result;
+import ru.javarush.cryptoanalyser.uzienko.controllers.MainController;
 
 import java.util.Arrays;
 

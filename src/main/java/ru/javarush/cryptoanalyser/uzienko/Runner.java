@@ -1,7 +1,8 @@
-package ru.javarush.cryptoanaliser.uzienko;
+package ru.javarush.cryptoanalyser.uzienko;
 
-import ru.javarush.cryptoanaliser.uzienko.app.Application;
-import ru.javarush.cryptoanaliser.uzienko.controllers.MainController;
+import ru.javarush.cryptoanalyser.uzienko.toplevel.Application;
+import ru.javarush.cryptoanalyser.uzienko.controllers.MainController;
+import ru.javarush.cryptoanalyser.uzienko.entity.Result;
 
 public class Runner {
     public static void main(String[] args) {

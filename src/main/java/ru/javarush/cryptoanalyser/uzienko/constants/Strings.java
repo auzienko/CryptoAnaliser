@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanaliser.uzienko.constants;
+package ru.javarush.cryptoanalyser.uzienko.constants;
 
 public class Strings {
     private static final String rus = "";
