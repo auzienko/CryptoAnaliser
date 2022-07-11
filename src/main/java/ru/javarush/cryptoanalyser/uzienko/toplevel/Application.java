@@ -1,20 +1,19 @@
 package ru.javarush.cryptoanalyser.uzienko.toplevel;
 
+import ru.javarush.cryptoanalyser.uzienko.controllers.AppController;
 import ru.javarush.cryptoanalyser.uzienko.entity.Result;
-import ru.javarush.cryptoanalyser.uzienko.controllers.MainController;
-
-import java.util.Arrays;
+import ru.javarush.cryptoanalyser.uzienko.views.View;
 
 public class Application {
-    private final MainController mainController;
+    private final AppController appController;
+    private final View view;
 
-    public Application(MainController mainController) {
-        this.mainController = mainController;
+    public Application(AppController appController, View view) {
+        this.appController = appController;
+        this.view = view;
     }
 
     public Result run(String[] args) {
-        String command = args[0];
-        String[] parameters = Arrays.copyOfRange(args, 1, args.length);
-        return mainController.execute(command, parameters);
+        return view.execute(appController, args);
     }
 }
