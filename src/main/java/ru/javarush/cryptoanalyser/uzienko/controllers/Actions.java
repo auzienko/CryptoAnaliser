@@ -1,6 +1,7 @@
 package ru.javarush.cryptoanalyser.uzienko.controllers;
 
 import ru.javarush.cryptoanalyser.uzienko.commands.Action;
+import ru.javarush.cryptoanalyser.uzienko.commands.BruteForce;
 import ru.javarush.cryptoanalyser.uzienko.commands.Decoder;
 import ru.javarush.cryptoanalyser.uzienko.commands.Encoder;
 import ru.javarush.cryptoanalyser.uzienko.exceptions.ApplicationException;
@@ -8,6 +9,7 @@ import ru.javarush.cryptoanalyser.uzienko.exceptions.ApplicationException;
 public enum Actions {
     ENCODE(new Encoder()),
     DECODE(new Decoder()),
+    BRUTE_FORCE(new BruteForce()),
     ;
 
     private final Action action;

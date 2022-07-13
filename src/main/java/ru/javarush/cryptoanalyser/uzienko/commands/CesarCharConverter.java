@@ -5,18 +5,22 @@ import ru.javarush.cryptoanalyser.uzienko.exceptions.ApplicationException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlphabetConverter {
+public class CesarCharConverter {
     private final String alphabet;
-    private final int offset;
+    private int offset;
     private final Map<Character, Integer> alphabetMap;
 
-    public AlphabetConverter(String alphabet, int offset) {
+    public CesarCharConverter(String alphabet, int offset) {
         this.alphabet = alphabet;
         if (alphabet.isEmpty()) {
             throw new ApplicationException("Alphabet can't be empty");
         }
-        this.offset = offset % alphabet.length();
+        setOffset(offset);
         alphabetMap = of(alphabet);
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset % alphabet.length();
     }
 
     private Map<Character, Integer> of(String alphabet) {
