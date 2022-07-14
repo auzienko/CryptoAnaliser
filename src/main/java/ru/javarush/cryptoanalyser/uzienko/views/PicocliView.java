@@ -19,11 +19,11 @@ public class PicocliView implements Runnable, View {
     }
 
     @Command(name = "brute_force", description = "Decrypt from file to file using brute force")
-    void bruteForce(@Parameters(paramLabel = "<source file>", description = "source file with encrypted text") File src, @Option(names = {"-r", "--representative"}, description = "file with unencrypted representative text") File representativeFile, @Parameters(paramLabel = "<dest file>", description = "dest file which should have decrypted text") File dest) {
+    void bruteForce(@Parameters(paramLabel = "<source file>", description = "source file with encrypted text") File src, @Parameters(paramLabel = "<dest file>", description = "dest file which should have decrypted text") File dest) {
     }
 
     @Command(name = "statistical_decryption", description = "Decrypt from file to file using statistical analysis")
-    void statisticalDecrypt(@Parameters(paramLabel = "<source file>", description = "source file with encrypted text") File src, @Option(names = {"-r", "--representative"}, description = "file with unencrypted representative text") File representativeFile, @Parameters(paramLabel = "<dest file>", description = "dest file which should have decrypted text") File dest) {
+    void statisticalDecrypt(@Parameters(paramLabel = "<encrypted source file>", description = "source file with encrypted text") File src, @Parameters(paramLabel = "<unencrypted source file>", description = "file with unencrypted representative text") File representativeFile, @Parameters(paramLabel = "<dest file>", description = "dest file which should have decrypted text") File dest) {
     }
 
 
