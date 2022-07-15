@@ -14,7 +14,6 @@ import java.util.*;
 public class StatisticalDecoder implements Action {
     @Override
     public Result execute(String[] parameters) {
-        double epsilon = 0.01d;
         String encryptedFileName = PathFinder.getRoot() + parameters[0];
         String sourceFileName = PathFinder.getRoot() + parameters[1];
         String resultFileName = PathFinder.getRoot() + parameters[2];
@@ -22,24 +21,26 @@ public class StatisticalDecoder implements Action {
         Map<Character, Double> encryptedStat = FileCharsStat.of(encryptedFileName);
         Map<Character, Double> sourceStat = FileCharsStat.of(sourceFileName);
 
-        List<Map.Entry<Character,Double>> mapByRate = new ArrayList<>(sourceStat.entrySet());
-        mapByRate.sort(Comparator.comparingDouble(Map.Entry::getValue));
+        List<Map.Entry<Character, Double>> sourceByRate = new ArrayList<>(sourceStat.entrySet());
+        List<Map.Entry<Character, Double>> encryptedByRate = new ArrayList<>(encryptedStat.entrySet());
+
+        sourceByRate.sort((a, b) -> -Double.compare(a.getValue(), b.getValue()));
+        encryptedByRate.sort((a, b) -> -Double.compare(a.getValue(), b.getValue()));
+
+        Map<Character, Character> mapMap = new HashMap<>();
+        for (int i = 0; i < sourceByRate.size() && i < encryptedByRate.size(); ++i) {
+            mapMap.put(encryptedByRate.get(i).getKey(), sourceByRate.get(i).getKey());
+        }
 
         try (FileReader fileReader = new FileReader(encryptedFileName);
              FileWriter fileWriter = new FileWriter(resultFileName)) {
             for (int i = fileReader.read(); i > 0; i = fileReader.read()) {
-                Double d = encryptedStat.get((char) i);
-                for (Map.Entry<Character, Double> e: mapByRate) {
-                    if (Math.abs(d - e.getValue()) < epsilon) {
-                        i = e.getKey();
-                        break;
-                    }
-                }
-                fileWriter.write((char) i);
+                Character c = mapMap.get((char) i);
+                fileWriter.write(c == null ? (char) i : c);
             }
         } catch (IOException e) {
             throw new ApplicationException("IO error", e);
         }
-        return new Result(ResultCode.OK, "read all bytes from ");
+        return new Result(ResultCode.OK, "read all bytes from " + encryptedFileName);
     }
 }

@@ -18,11 +18,9 @@ public class FileCharsStat {
                 result.put((char) i, d == null ? 1 : d + 1);
                 count++;
             }
-            double mid = count * 1./ result.size();
-
+            double mid = count * 1. / result.size();
             for (Map.Entry<Character, Double> item : result.entrySet()) {
                 Double dif = (item.getValue() - mid) / mid;
-
                 item.setValue(dif * dif);
             }
         } catch (IOException e) {
